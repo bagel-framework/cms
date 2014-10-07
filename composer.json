@@ -1,0 +1,30 @@
+{
+    "name": "bagel/cms",
+    "description": "",
+    "authors": [
+        {
+            "name": "Sidney Widmer",
+            "email": "sidneywidmer@gmail.com"
+        },
+        {
+            "name": "Gianluca Guarini"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "dimsav/laravel-translatable": "4.3.*",
+        "venturecraft/revisionable": "1.*",
+        "laracasts/commander": "1.*",
+        "illuminate/support": "4.2.*",
+        "baum/baum": "~1.0"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "Bagel\\Cms\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}

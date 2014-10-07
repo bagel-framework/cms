@@ -1,0 +1,89 @@
+.block.error {
+	color: #ff5f5f;
+}
+
+/**
+ * Overwrite some Elfinder styles
+ */
+.elfinder .elfinder-button{
+	width: auto;
+	height: auto;
+}
+
+/**
+ * Overwrite some UI styles
+ */
+
+.navbar-brand {
+	min-width: 150px;
+	font-style: normal;
+	padding: 10px 0 8px 6px;
+	text-align: left;
+}
+
+.nav.navbar-avatar > li > a {
+	padding: 15px 10px;
+}
+
+.nav .caret {
+	margin: 0 11px;
+}
+
+.online {
+	color: #3fcf7f;
+}
+
+.offline {
+	color: #ff5f5f;
+}
+
+.breadcrumb {
+	background-color: #fafbfc;
+	padding: 6px 15px;
+	padding-left: 10px;
+	float: left;
+}
+
+.breadcrumb_wrapper{
+	background-color: #fafbfc;
+	border:1px solid #e0e4e8;
+	font-size: 12px;
+	padding: 5px 0;
+	border-radius: 4px;
+	margin-bottom: 15px;
+	height: 43px;
+	position: relative;
+}
+
+.breadcrumb_wrapper .btn-group {
+	position: absolute;
+	right: 15px;
+}
+
+.is-home {
+	color: #22baa0;
+}
+
+#bagelmodal .modal-body {
+	padding: 0px;
+}
+
+.panel.success .panel-heading{
+	color: #fff;
+	background-color: #13c4a5;
+}
+
+.panel.success .panel-heading ul li a {
+	color: #fff;
+}
+
+.panel.success .panel-heading ul li a:hover {
+	color: #2a6496;
+}
+
+.text-disabled{color: #cad0d7}
+
+#login {
+	margin: 50px auto;
+	width: 300px;
+}

@@ -1,15 +1,15 @@
-<?php namespace Bagel\Cms\FormValidator;
+<?php namespace Bagel\Cms\Validator;
 
 use Laracasts\Commander\CommandBus;
-use Illuminate\Validation\Factory as Validator;
+use Illuminate\Validation\Factory as ValidatorFactory;
 use Illuminate\Validation\Validator as ValidatorInstance;
 
-abstract class FormValidator implements CommandBus {
+abstract class Validator implements CommandBus {
 
 	/**
-	 * @var Validator
+	 * @var ValidatorFactory
 	 */
-	protected $validator;
+	protected $validatorFactory;
 
 	/**
 	 * @var ValidatorInstance
@@ -24,9 +24,9 @@ abstract class FormValidator implements CommandBus {
 	/**
 	 * @param Validator $validator
 	 */
-	public function __construct(Validator $validator)
+	public function __construct(ValidatorFactory $validatorFactory)
 	{
-		$this->validator = $validator;
+		$this->validatorFactory = $validatorFactory;
 	}
 
 	/**
@@ -39,11 +39,11 @@ abstract class FormValidator implements CommandBus {
 	 */
 	public function validate(array $data)
 	{
-		$this->validation = $this->validator->make($data, $this->getValidationRules());
+		$this->validation = $this->validatorFactory->make($data, $this->getValidationRules());
 
         if($this->validation->fails())
         {
-            throw new FormValidatorException($this->message, $this->getValidationErrors());
+            throw new ValidatorException($this->message, $this->getValidationErrors());
         }
 
         return true;

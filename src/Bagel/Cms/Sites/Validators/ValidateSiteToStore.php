@@ -1,9 +1,9 @@
-<?php namespace Bagel\Cms\Sites\Forms;
+<?php namespace Bagel\Cms\Sites\Validators;
 
-use Bagel\Cms\FormValidator\FormValidationException;
-use Bagel\Cms\FormValidator\FormValidator;
+use Bagel\Cms\Validator\ValidationException;
+use Bagel\Cms\Validator\Validator;
 
-class ValidateStoreSiteForm extends FormValidator {
+class ValidateSiteToStore extends Validator {
 
     protected $message = 'Site not valid for storage';
 

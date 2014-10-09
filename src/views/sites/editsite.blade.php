@@ -48,9 +48,9 @@
                             <div class="col-lg-9 scrollbar scroll-y" style="max-height: 260px">
                                 <div class="checkbox">
                                     <label>
-                                        {{Form::checkbox('is_home')}} @lang('cms::sites.set_start'): <b>{{$parent_site}}</b>.<br>
-                                        @if($parent_site !== null)
-                                            <small>@lang('cms::sites.current_start'): {{$parent_site}}</small>
+                                        {{Form::checkbox('is_home')}} @lang('cms::sites.set_start'): <b>{{$parentSite}}</b>.<br>
+                                        @if($parentSite !== null)
+                                            <small>@lang('cms::sites.current_start'): {{$parentSite}}</small>
                                         @else
                                             <small>@lang('cms::sites.current_start'): @lang('cms::sites.none')</small>
                                         @endif
@@ -58,7 +58,7 @@
                                 </div>
                             </div>
                         </div>
-                        {{Form::bagelSubmit('Bagel\Cms\Controllers\SiteController@index', array('site' => $parent_site))}}
+                        {{Form::bagelSubmit('Bagel\Cms\Controllers\SiteController@index', array('site' => $parentSite))}}
                     {{Form::close()}}
                 </div>
             </section>

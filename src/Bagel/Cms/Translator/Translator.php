@@ -40,7 +40,8 @@ trait Translatable {
     {
         parent::boot();
 
-        static::saving(function($model){
+        static::saving(function ($model)
+        {
             // Cancel if not localized
             if(empty($model->translatedAttributes))
             {
@@ -56,7 +57,7 @@ trait Translatable {
             // them on the actual model
             foreach($attributes as $key => $value)
             {
-                if (in_array($key, $model->translatedAttributes))
+                if(in_array($key, $model->translatedAttributes))
                 {
                     unset($model->$key);
                     $translated[$key] = $value;
@@ -80,8 +81,7 @@ trait Translatable {
                 $langModel = $model->newTranslatedModel($translated);
                 $langModel->language_id = $langId;
                 $model->cachedLanguageModel = $langModel;
-            }
-            else
+            }else
             {
                 $langModel->update($translated);
             }
@@ -89,11 +89,13 @@ trait Translatable {
             return true;
         });
 
-        static::saved(function($model){
+        static::saved(function ($model)
+        {
             if($model->cachedLanguageModel !== null)
             {
                 $model->translations()->save($model->cachedLanguageModel);
             }
+
             return true;
         });
     }
@@ -102,7 +104,7 @@ trait Translatable {
      * create a new model with the translated values
      * the name of this model must be set in the original model
      *
-     * @param  array  $values
+     * @param  array $values
      * @return object
      */
     public function newTranslatedModel(array $values)

@@ -40,8 +40,7 @@ class SiteController extends Controller {
         try
         {
             $this->execute(StoreSiteCommand::class, Input::except('_token'), ['Bagel\Cms\Sites\Validators\ValidateSiteToStore']);
-        }
-        catch (BagelException $e)
+        } catch(BagelException $e)
         {
             dd($e->getErrors());
         }

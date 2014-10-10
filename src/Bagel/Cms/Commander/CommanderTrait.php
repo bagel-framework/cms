@@ -9,8 +9,8 @@ trait CommanderTrait {
      * Execute the command
      *
      * @param  string $command
-     * @param  array $input
-     * @param  array $decorators
+     * @param  array  $input
+     * @param  array  $decorators
      * @return mixed
      */
     public function execute($command, array $input = null, $decorators = [])
@@ -25,7 +25,7 @@ trait CommanderTrait {
         // filter through and register them
         // with the CommandBus, so that they
         // are executed first.
-        foreach ($decorators as $decorator)
+        foreach($decorators as $decorator)
         {
             $bus->decorate($decorator);
         }

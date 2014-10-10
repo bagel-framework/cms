@@ -23,7 +23,7 @@ class StoreSiteCommandHandler implements CommandHandler {
      * Handle the creation of a new site in
      * the DB.
      *
-     * @param  object  $command  Bagel\Cms\Sites\Commands\StoreSiteCommand
+     * @param  object $command Bagel\Cms\Sites\Commands\StoreSiteCommand
      * @return void
      */
     public function handle($command)
@@ -39,7 +39,7 @@ class StoreSiteCommandHandler implements CommandHandler {
      * Get the SiteModel of the parent site so we know
      * where we have to store the site currently in question
      *
-     * @param  integer  $siteId
+     * @param  int $siteId
      * @return SiteModel
      */
     protected function getParent($siteId)

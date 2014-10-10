@@ -27,7 +27,7 @@ class ValidateSiteToStore extends Validator {
     /**
      * Prepare data for validation
      *
-     * @param   object  $command  Bagel\Cms\Sites\Commands\StoreSiteCommand
+     * @param   object $command Bagel\Cms\Sites\Commands\StoreSiteCommand
      * @return  void
      */
     public function execute($command)

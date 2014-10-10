@@ -28,7 +28,7 @@ class SiteRepository {
      * Find a Site by its id and throw an exception
      * if not found
      *
-     * @param  integer  $id
+     * @param  integer $id
      * @throws Illuminate\Database\Eloquent\ModelNotFoundException
      * @return SiteModel
      */

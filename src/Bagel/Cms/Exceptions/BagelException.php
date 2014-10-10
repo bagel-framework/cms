@@ -4,30 +4,30 @@ use Illuminate\Support\MessageBag;
 
 class BagelException extends \Exception {
 
-	/**
-	 * @var MessageBag
-	 */
-	protected $errors;
+    /**
+     * @var MessageBag
+     */
+    protected $errors;
 
-	/**
-	 * @param string     $message
-	 * @param MessageBag $errors
-	 */
-	function __construct($message, MessageBag $errors)
-	{
-		$this->errors = $errors;
+    /**
+     * @param string     $message
+     * @param MessageBag $errors
+     */
+    function __construct($message, MessageBag $errors)
+    {
+        $this->errors = $errors;
 
-		parent::__construct($message);
-	}
+        parent::__construct($message);
+    }
 
-	/**
-	 * Get form validation errors
-	 *
-	 * @return MessageBag
-	 */
-	public function getErrors()
-	{
-		return $this->errors;
-	}
+    /**
+     * Get form validation errors
+     *
+     * @return MessageBag
+     */
+    public function getErrors()
+    {
+        return $this->errors;
+    }
 
 }

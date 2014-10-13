@@ -30,9 +30,9 @@ class StoreSiteCommandHandler implements CommandHandler {
     {
         $parent = $this->getParent($command->parent_site);
 
-        $site = $this->sites->store($parent, $command);
+        $this->sites->store($parent, $command);
 
-        $this->dispatchEventsFor($site);
+        $this->dispatchEventsFor($this->sites);
     }
 
     /**

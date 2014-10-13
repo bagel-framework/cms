@@ -1,5 +1,6 @@
 <?php namespace Bagel\Cms\Sites;
 
+use Bagel\Cms\Sites\Events\SiteWasCreated;
 use Laracasts\Commander\Events\EventGenerator;
 use Bagel\Cms\Sites\Commands\StoreSiteCommand;
 
@@ -17,9 +18,18 @@ class SiteRepository {
         $this->model = $site;
     }
 
+    /**
+     * Store a new Site in the DB
+     *
+     * @param SiteModel        $parent
+     * @param StoreSiteCommand $command
+     * @return \Bagel\Cms\Sites\SiteModel
+     */
     public function store(SiteModel $parent, StoreSiteCommand $command)
     {
         $site = $parent->children()->create($command->toArray());
+
+        $this->raise(new SiteWasCreated($site));
 
         return $site;
     }
@@ -29,7 +39,7 @@ class SiteRepository {
      * if not found
      *
      * @param  integer $id
-     * @throws Illuminate\Database\Eloquent\ModelNotFoundException
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      * @return SiteModel
      */
     public function findOrFail($id)

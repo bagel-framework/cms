@@ -1,8 +1,8 @@
 <?php namespace Bagel\Cms\Controllers;
 
-use Bagel\Cms\Sites\Commands\StoreSiteCommand;
 use Bagel\Cms\Exceptions\BagelException;
 use Bagel\Cms\Commander\CommanderTrait;
+use Bagel\Cms\Sites\SiteModel;
 use Controller;
 use Input;
 use View;
@@ -26,7 +26,7 @@ class SiteController extends Controller {
      */
     public function create()
     {
-        $templates = array(1 => 'foo', 2 => 'bar');
+        $templates = [1 => 'foo', 2 => 'bar'];
         $parentSite = 1;
 
         return View::make('cms::sites.editsite', compact('templates', 'parentSite'));
@@ -39,7 +39,11 @@ class SiteController extends Controller {
     {
         try
         {
-            $this->execute(StoreSiteCommand::class, Input::except('_token'), ['Bagel\Cms\Sites\Validators\ValidateSiteToStore']);
+            $this->execute(
+                'Bagel\Cms\Sites\Commands\StoreSiteCommand',
+                Input::except('_token'),
+                ['Bagel\Cms\Sites\Validators\ValidateSiteToStore']
+            );
         } catch(BagelException $e)
         {
             dd($e->getErrors());

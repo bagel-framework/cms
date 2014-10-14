@@ -29,6 +29,7 @@ class BagelCommandTranslator implements CommandTranslator {
         return $handler;
     }
 
+
     /**
      * Translate a command to its validator counterpart
      *
@@ -37,9 +38,6 @@ class BagelCommandTranslator implements CommandTranslator {
      */
     public function toValidator($command)
     {
-        $commandClass = get_class($command);
-
-        return substr_replace($commandClass, 'Validator', strrpos($commandClass, 'Command'));
+        // not used anymore, keep until we update the package
     }
-
 }

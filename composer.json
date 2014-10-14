@@ -18,6 +18,9 @@
         "illuminate/support": "4.2.*",
         "baum/baum": "~1.0"
     },
+    "require-dev": {
+        "codeception/codeception": "*"
+    },
     "autoload": {
         "classmap": [
             "src/migrations"

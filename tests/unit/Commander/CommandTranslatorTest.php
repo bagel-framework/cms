@@ -5,6 +5,7 @@ use Foo\Bar\Commands\BarCommand;
 use Foo\Bar\Commands\FooCommand;
 
 class CommandTranslatorTest extends \Codeception\TestCase\Test {
+
     /**
      * @var \UnitTester
      */
@@ -39,6 +40,7 @@ class CommandTranslatorTest extends \Codeception\TestCase\Test {
 
 }
 
+// Stubs n Stuff
 namespace Foo\Bar\Commands;
 class FooCommand {}
 class BarCommand {}

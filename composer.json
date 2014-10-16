@@ -19,7 +19,8 @@
         "baum/baum": "~1.0"
     },
     "require-dev": {
-        "codeception/codeception": "*"
+        "codeception/codeception": "*",
+        "mockery/mockery": "dev-master"
     },
     "autoload": {
         "classmap": [

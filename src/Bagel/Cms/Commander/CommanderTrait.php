@@ -18,7 +18,6 @@ trait CommanderTrait {
         $input = $input ?: Input::all();
 
         $command = new $command($input);
-
         $bus = $this->getCommandBus();
 
         // If any decorators are passed, we'll

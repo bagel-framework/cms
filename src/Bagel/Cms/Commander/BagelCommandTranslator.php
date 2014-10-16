@@ -19,7 +19,7 @@ class BagelCommandTranslator implements CommandTranslator {
         $handler = substr_replace($commandClass, 'CommandHandler', strrpos($commandClass, 'Command'));
         $handler = str_replace('Commands', 'Handlers', $handler);
 
-        if(!class_exists($handler))
+        if (!class_exists($handler))
         {
             $message = "Command handler [$handler] does not exist.";
 

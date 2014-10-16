@@ -41,7 +41,7 @@ abstract class Validator implements CommandBus {
     {
         $this->validation = $this->validatorFactory->make($data, $this->getValidationRules());
 
-        if($this->validation->fails())
+        if ($this->validation->fails())
         {
             throw new ValidatorException($this->message, $this->getValidationErrors());
         }

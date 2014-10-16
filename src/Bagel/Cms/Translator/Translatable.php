@@ -19,7 +19,7 @@ trait Translatable {
      */
     public function translations($locale = null)
     {
-        if($locale === null)
+        if ($locale === null)
         {
             return $this->currentTranslation();
         }
@@ -37,7 +37,8 @@ trait Translatable {
     {
         $languageId = 1;
 
-        return $this->hasOne($this->translatedModel, $this->translatedModelForeignKey)->where('language_id', $languageId);
+        return $this->hasOne($this->translatedModel, $this->translatedModelForeignKey)->where('language_id',
+            $languageId);
     }
 
     /**
@@ -51,7 +52,8 @@ trait Translatable {
     {
         $languageId = 1;
 
-        return $this->hasOne($this->translatedModel, $this->translatedModelForeignKey)->where('language_id', $languageId);
+        return $this->hasOne($this->translatedModel, $this->translatedModelForeignKey)->where('language_id',
+            $languageId);
     }
 
     /**
@@ -64,9 +66,9 @@ trait Translatable {
     {
         $translated = [];
 
-        foreach($this->getAttributes() as $key => $value)
+        foreach ($this->getAttributes() as $key => $value)
         {
-            if(in_array($key, $this->translatedAttributes))
+            if (in_array($key, $this->translatedAttributes))
             {
                 $translated[$key] = $value;
             }
@@ -88,7 +90,7 @@ trait Translatable {
 
         // If there is no Language Model yet for this translation, create one. Otherwise
         // we can just update the existing one
-        if(!$translatedModel)
+        if (!$translatedModel)
         {
             $translatedModel = $this->newTranslatedModel($translatedAttributes);
             $translatedModel->language_id = $languageId;
@@ -121,9 +123,12 @@ trait Translatable {
      */
     public function __isset($key)
     {
-        if($this->translatedAttributes)
+        if ($this->translatedAttributes)
         {
-            if(in_array($key, $this->translatedAttributes)) return true;
+            if (in_array($key, $this->translatedAttributes))
+            {
+                return true;
+            }
         }
 
         return parent::__isset($key);
@@ -139,9 +144,12 @@ trait Translatable {
     public function __get($key)
     {
         // If the attribute is set to be automatically localized
-        if(in_array($key, $this->translatedAttributes))
+        if (in_array($key, $this->translatedAttributes))
         {
-            if($this->currentTranslation) return $this->currentTranslation->$key;
+            if ($this->currentTranslation)
+            {
+                return $this->currentTranslation->$key;
+            }
         }
 
         return parent::__get($key);
@@ -157,15 +165,18 @@ trait Translatable {
     {
         parent::boot();
 
-        static::saving(function($model)
+        static::saving(function ($model)
         {
             $translatedAttributes = $model->extractAttributesToTranslate();
 
             // If there aren't any attributes to translate, we can continue
-            if(empty($translatedAttributes)) return true;
+            if (empty($translatedAttributes))
+            {
+                return true;
+            }
 
             // We can now unset the translated attributes in our original model
-            foreach($translatedAttributes as $key => $value)
+            foreach ($translatedAttributes as $key => $value)
             {
                 unset($model->attributes[$key]);
             }
@@ -177,7 +188,7 @@ trait Translatable {
 
         static::saved(function ($model)
         {
-            if($model->cachedTranslatedModel !== null)
+            if ($model->cachedTranslatedModel !== null)
             {
                 $model->translations()->save($model->cachedTranslatedModel);
             }

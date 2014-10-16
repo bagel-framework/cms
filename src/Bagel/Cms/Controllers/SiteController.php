@@ -44,7 +44,8 @@ class SiteController extends Controller {
                 Input::except('_token'),
                 ['Bagel\Cms\Sites\Validators\ValidateSiteToStore']
             );
-        } catch(BagelException $e)
+        }
+        catch(BagelException $e)
         {
             dd($e->getErrors());
         }

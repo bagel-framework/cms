@@ -15,6 +15,8 @@ class SiteModel extends Node {
 
     protected $translatedAttributes = ['name', 'slug', 'is_online', 'is_visible'];
 
+    protected $with = ['currentTranslation'];
+
     protected $fillable = [
         'type',
         'template_id',

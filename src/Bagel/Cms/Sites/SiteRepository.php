@@ -27,7 +27,16 @@ class SiteRepository {
      */
     public function store(SiteModel $parent, StoreSiteCommand $command)
     {
-        $site = $parent->children()->create($command->toArray());
+        $data = [
+            'parent_site' => $command->parent_site,
+            'type'        => $command->type,
+            'template_id' => $command->template_id,
+            'name'        => $command->name,
+            'slug'        => $command->slug,
+            'is_home'     => $command->is_home,
+        ];
+
+        $site = $parent->children()->create($data);
 
         $this->raise(new SiteWasCreated($site));
 
@@ -45,6 +54,18 @@ class SiteRepository {
     public function findOrFail($id)
     {
         return $this->model->findOrFail($id);
+    }
+
+    /**
+     * Get all the first level children of a site
+     *
+     * @param integer $siteId
+     */
+    public function getChildrenByParentId($siteId)
+    {
+        $site = $this->findOrFail($siteId);
+
+        return $site->children()->get();
     }
 
 }

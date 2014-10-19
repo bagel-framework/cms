@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="{{asset('packages/bagel/cms/css/plugin.css')}}">
     <link rel="stylesheet" href="{{asset('packages/bagel/cms/css/butter.css')}}">
 
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
     <!--[if lt IE 9]>
         <script src="js/ie/respond.min.js"></script>
         <script src="js/ie/html5.js"></script>
@@ -51,6 +53,22 @@
             @yield('content')
         </section>
     </section>
+
+    <script type="text/javascript">
+
+        $('.action-update').on('click', {action: 'update'}, changeActionUrl);
+        $('.action-save').on('click', {action: 'save'}, changeActionUrl);
+
+    	function changeActionUrl(e) {
+    		// get the form which belongs to this button
+    		var form = $(this).parents('form:first'),
+    			action_url = form.attr('action');
+
+    		// add the store action (save or update) to the form action url
+    		form.attr('action', action_url + '?store_action=' + e.data.action);
+    	}
+
+    </script>
 
 </body>
 </html>

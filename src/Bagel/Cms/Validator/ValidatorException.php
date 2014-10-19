@@ -2,6 +2,4 @@
 
 use Bagel\Cms\Exceptions\BagelException;
 
-class ValidatorException extends BagelException {
-
-}
+class ValidatorException extends BagelException {}

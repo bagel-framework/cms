@@ -11,7 +11,6 @@ class SiteWasCreated {
 
     public function __construct(SiteModel $site)
     {
-
         $this->site = $site;
     }
 

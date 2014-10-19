@@ -1,7 +1,11 @@
 @extends('cms::layouts.base')
 
 @section('metatitle')
-    @parent @lang('cms::sites.metatitle_edit')
+    @if(!isset($site))
+        @parent @lang('cms::sites.maintitle_create')
+    @else
+        @parent @lang('cms::sites.maintitle_edit')
+    @endif
 @stop
 
 @section('content')
@@ -17,6 +21,7 @@
 
     <div class="row">
         @include('cms::sites.includes.breadcrumbs')
+        @include('cms::layouts.includes.messages')
         <div class="col-sm-6">
             <section class="panel">
                 <header class="panel-heading">
@@ -36,7 +41,7 @@
                     <div class="panel-body collapse">
                         {{Form::model($site, array('action' => array('Bagel\Cms\Controllers\SiteController@update', $site->id), 'class' => 'form-horizontal', 'data-validate' => 'parsley'))}}
                 @endif
-                        @if(!isset($site) OR Input::old('template_id') != null)
+                        @if(!isset($site) or Input::old('template_id') != null)
                             {{Form::bagelDropdown('template_id', 'Template', Input::old('template_id'), $templates)}}
                         @else
                             {{Form::bagelDropdown('template_id', 'Template', $site->template_id, $templates)}}

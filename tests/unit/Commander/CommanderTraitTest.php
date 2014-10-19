@@ -3,7 +3,7 @@
 use Bagel\Cms\Commander\CommanderTrait;
 use Illuminate\Support\Facades\App;
 use Input;
-use Mockery;
+use Mockery as m;
 
 class CommanderTraitTest extends \Codeception\TestCase\Test {
 
@@ -24,14 +24,14 @@ class CommanderTraitTest extends \Codeception\TestCase\Test {
 
     public function _after()
     {
-        Mockery::close();
+        m::close();
     }
 
     public function testCommandGetsExecuted()
     {
-        $commandBusMock = Mockery::mock('CommandBusStub')
+        $commandBusMock = m::mock('CommandBusStub')
             ->shouldReceive('execute')
-            ->with(Mockery::type('Commander\CommandStub'))
+            ->with(m::type('Commander\CommandStub'))
             ->andReturn(true)
             ->getMock();
 
@@ -47,7 +47,7 @@ class CommanderTraitTest extends \Codeception\TestCase\Test {
 
     public function testDecoratorsGetApplied()
     {
-        $commandBusMock = Mockery::mock('CommandBusStub')
+        $commandBusMock = m::mock('CommandBusStub')
             ->shouldReceive('decorate', 'execute')
             ->getMock();
 

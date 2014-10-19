@@ -1,4 +1,4 @@
-.landing .navbar-brand{border: none;padding-left: 0}
+.landing .navbar-brand{border: none}
 .landing .navbar{padding: 5px 0}
 .landing .navbar.affix{left: 0;right: 0;padding: 0;  
 	-webkit-transition: padding ease-in-out 0.3s;
@@ -19,17 +19,13 @@
 .font-thin{font-weight: 300}
 .m-large{margin-top: 50px; margin-bottom: 50px;}
 
-.landing .gallery{text-align: center;}
-.landing .gallery .thumbnail{
+.gallery{text-align: center;}
+.gallery .thumbnail{
 	display: inline-block;
 	border-radius: 0;
 	padding: 10px;
 	margin: 20px 0;
 }
-
-.navbar-brand{
-    float: left;
-  }
 
 
 /*phone*/

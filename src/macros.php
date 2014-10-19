@@ -1,13 +1,19 @@
 <?php
 
-Form::macro('bagelSubmit', function ($cancelLink, $parameters = array())
+Form::macro('bagelSubmit', function ($cancelLink, $parameters = array(), $allowUpdate = false)
 {
     $html = '
     <div class="form-group">
         <div class="col-lg-9 col-lg-offset-2">
-            <a class="btn btn-white btn-sm" href="' . action($cancelLink, $parameters) . '">Abbrechen</a>
-            <button class="btn btn-primary btn-sm action-update" type="submit">Übernehmen</button>
-            <button class="btn btn-primary btn-sm action-save" type="submit">Speichern</button>
+            <a class="btn btn-white btn-sm" href="' . action($cancelLink, $parameters) . '">Abbrechen</a>';
+
+    if($allowUpdate == true)
+    {
+        $html .= '<button class="btn btn-primary btn-sm action-update" type="submit">Übernehmen</button>';
+    }
+
+    $html .= '
+        <button class="btn btn-primary btn-sm action-save" type="submit">Speichern</button>
         </div>
     </div>';
 
@@ -84,6 +90,20 @@ Form::macro('bagelDropdown', function ($name, $label, $preSelectedValue, $items)
     ';
 
     return $html;
+});
+
+HTML::macro('buildSiteStatusLink', function($siteId, $currentStatus)
+{
+    $class = ($currentStatus === '1' ? 'online' : 'offline');
+    $link = "<a class='{$class}' href='".action('Bagel\Cms\Controllers\SiteController@toggleStatus', array('site' => $siteId))."'>{$class}</a>";
+    return $link;
+});
+
+HTML::macro('buildSiteVisibilityLink', function($siteId, $currentStatus)
+{
+    $class = ($currentStatus === '1' ? 'sichtbar' : 'unsichtbar');
+    $link = "<a class='{$class}' href='".action('Bagel\Cms\Controllers\SiteController@toggleVisibility', array('site' => $siteId))."'>{$class}</a>";
+    return $link;
 });
 
 

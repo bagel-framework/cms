@@ -2,6 +2,4 @@
 
 use Illuminate\Support\Fluent;
 
-class StoreSiteCommand extends Fluent {
-
-}
+class StoreSiteCommand extends Fluent {}

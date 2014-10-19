@@ -3,20 +3,45 @@
 use Bagel\Cms\Exceptions\BagelException;
 use Bagel\Cms\Commander\CommanderTrait;
 use Bagel\Cms\Sites\SiteModel;
+use Bagel\Cms\Sites\SiteRepository;
 use Controller;
+use Illuminate\Support\Facades\Redirect;
 use Input;
 use View;
 
 class SiteController extends Controller {
 
     use CommanderTrait;
+    /**
+     * @var SiteRepository
+     */
+    private $sites;
+
+    public function __construct(SiteRepository $sites)
+    {
+
+        $this->sites = $sites;
+    }
 
     /**
-     * Display the tree of the type bagel_root
+     * Redirect to root category
+     * The root category always has id 1
      */
     public function index()
     {
-        return View::make('cms::sites.index');
+        return Redirect::action('Bagel\Cms\Controllers\SiteController@category', array('site' => 1));
+    }
+
+    /**
+     * Show the structure of the current category
+     *
+     * @param integer $siteId
+     */
+    public function category($siteId = 1)
+    {
+        $structure = $this->sites->getChildrenByParentId($siteId);
+
+        return View::make('cms::sites.index')->with(compact('structure'));
     }
 
     /**
@@ -37,24 +62,64 @@ class SiteController extends Controller {
      */
     public function store()
     {
+        $data = [
+            'parent_site' => Input::get('parent_site'),
+            'type'        => Input::get('type'),
+            'template_id' => Input::get('template_id'),
+            'name'        => Input::get('name'),
+            'slug'        => Input::get('slug'),
+            'is_home'     => Input::get('is_home', 0),
+        ];
+
         try
         {
             $this->execute(
                 'Bagel\Cms\Sites\Commands\StoreSiteCommand',
-                Input::except('_token'),
+                $data,
                 ['Bagel\Cms\Sites\Validators\ValidateSiteToStore']
             );
         }
         catch(BagelException $e)
         {
-            dd($e->getErrors());
+            return Redirect::back()->withInput()->with(['errors' => $e->getErrors()->all()]);
         }
+
+        return Redirect::action('Bagel\Cms\Controllers\SiteController@index', array('site' => Input::get('current', 1)))
+            ->with(['messages' => [trans('sites.created_successful')]]);
     }
 
     /**
-     * Update an existing site
+     * Display the view to edit an existing Site
+     */
+    public function edit()
+    {
+
+    }
+
+    /**
+     * Update an existing Site in the DB
      */
     public function update()
+    {
+
+    }
+
+    public function toggleVisibility($siteId)
+    {
+
+    }
+
+    public function toggleStatus($siteId)
+    {
+
+    }
+
+    public function move($siteId)
+    {
+
+    }
+
+    public function delete($siteId)
     {
 
     }

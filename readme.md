@@ -19,3 +19,8 @@ E.g Section 'Heading' with identifier 'heading_default' has one module: h1
 E.g Section 'Album' with identifier 'record' has modules: Title (fix), Track (flexible), Year (fix)
 
 Later Sections will be assigned to templates 
+
+
+
+// Site types for now:
+bagel_root, bagel_site, bagel_category

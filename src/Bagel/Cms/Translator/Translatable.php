@@ -78,7 +78,8 @@ trait Translatable {
     }
 
     /**
-     *
+     * Depending on if there's already a translated
+     * model in the DB either update it, or create a new one
      *
      * @param array $translatedAttributes
      */

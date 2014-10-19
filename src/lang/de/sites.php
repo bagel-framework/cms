@@ -17,8 +17,8 @@ return [
         'visibility' => 'Sichtbarkeit',
         'actions'    => 'Aktionen',
     ],
+
     // Edit site
-    'metatitle_edit'          => 'Seite bearbeiten',
     'maintitle_create'        => 'Seite hinzufügen',
     'maintitle_cedit'         => 'Seite bearbeiten',
     'general'                 => 'Allgemeines',
@@ -27,5 +27,8 @@ return [
     'none'                    => 'Keine',
     'options'                 => 'Optionen',
     'open_in_frontend'        => 'Seite im Frontend öffnen',
+
+    // Controller
+    'created_successful'      => 'Die Seite wurde erfolgreich erstellt',
 
 ];

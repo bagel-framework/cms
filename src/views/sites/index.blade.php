@@ -11,13 +11,14 @@
 
     <div class="row">
         @include('cms::sites.includes.breadcrumbs')
+        @include('cms::layouts.includes.messages')
         <div class="col-lg-12">
             <section class="panel">
                 <header class="panel-heading"><i class="icon-sitemap"></i> @lang('cms::sites.structure_panel_heading')</header>
                 <div class="panel-body">
                     <div class="row text-small">
                         <div class="col-sm-12 m-b-mini">
-                            <a class="btn btn-sm btn-white" href=""><i class="icon-file-alt"></i> @lang('cms::sites.create_site')</a>
+                            <a class="btn btn-sm btn-white" href="{{action('Bagel\Cms\Controllers\SiteController@create')}}"><i class="icon-file-alt"></i> @lang('cms::sites.create_site')</a>
                             <a class="btn btn-sm btn-white" href=""><i class="icon-book"></i> @lang('cms::sites.create_category')</a>
                         </div>
                     </div>
@@ -38,7 +39,13 @@
                         </thead>
 
                         <tbody>
-
+                            @foreach($structure as $site)
+                                @if($site->type == 'bagel_site')
+                                    @include('cms::sites.includes.site', compact('site'))
+                                @elseif($site->type == 'bagel_category')
+                                    @include('cms::sites.includes.category', compact('site'))
+                                @endif
+                            @endforeach
                         </tbody>
                     </table>
                 <!-- <div class="panel-body b-t">

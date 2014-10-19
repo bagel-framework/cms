@@ -21,7 +21,7 @@ class ValidateSiteToStore extends Validator {
         'template_id' => 'required|max:255',
         'name'        => 'required|max:255',
         'slug'        => 'required|max:255|alpha_dash',
-        'is_home'     => 'in:0,1',
+        'is_home'     => 'required|in:0,1',
     ];
 
     /**
